@@ -6,6 +6,7 @@ use App\Jobs\OrderJob;
 use App\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller{
 
@@ -23,5 +24,9 @@ class OrderController extends Controller{
 
     public function test(){
         $this->dispatch(new OrderJob(1));
+    }
+
+    public function callback(Request $request){
+        Log::info($request->getContent());
     }
 }
